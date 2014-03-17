@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  left: 1.5
+  left: 
+  right: 
+  top: 
+  bottom: 
+
+two:
+  left: 1.5
+  left: 
+  right: 
+  top: 
+  bottom: 

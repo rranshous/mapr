@@ -1,0 +1,35 @@
+<h1>Listing prints</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Left</th>
+      <th>Left</th>
+      <th>Right</th>
+      <th>Top</th>
+      <th>Bottom</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @prints.each do |print| %>
+      <tr>
+        <td><%= print.left %></td>
+        <td><%= print.left %></td>
+        <td><%= print.right %></td>
+        <td><%= print.top %></td>
+        <td><%= print.bottom %></td>
+        <td><%= link_to 'Show', print %></td>
+        <td><%= link_to 'Edit', edit_print_path(print) %></td>
+        <td><%= link_to 'Destroy', print, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Print', new_print_path %>
