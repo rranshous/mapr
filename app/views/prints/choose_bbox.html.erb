@@ -1,0 +1,19 @@
+<% content_for(:head) do %>
+  <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' %>
+  <%= javascript_include_tag 'openlayer/OpenLayers.debug.js' %>
+  <%= javascript_include_tag 'openlayer/func.js' %>
+  <script>$( document ).ready(function() { init(); });</script>
+  <style>
+    #map { width: 500px; height: 500px; }
+  </style>
+<% end %>
+
+
+<div id="map"></div>
+
+<hr/>
+
+<%= form_tag generate_sti_path, id:'latlong_form' do %>
+  <%= hidden_field_tag 'latlong' %>
+  <%= submit_tag "submit", id:'submit' %>
+<% end %>

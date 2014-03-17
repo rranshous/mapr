@@ -8,6 +8,12 @@ class PrintsController < ApplicationController
   def choose_scale
   end
 
+  def generate_sti
+    left, top, right, bottom = params[:latlong].split(',')
+    logger.debug "latlong: #{left} #{top} #{right} #{bottom}"
+    redirect_to choose_scale_path
+  end
+
   # GET /prints
   # GET /prints.json
   def index
