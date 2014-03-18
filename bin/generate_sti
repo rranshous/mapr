@@ -1,0 +1,32 @@
+#!/usr/bin/env ruby
+
+# grab our args, left/top/right/bottom
+left, top, right, bottom = ARGV[0..3]
+puts "LATLONG: #{left} #{top} #{right} #{bottom}"
+
+# get id for next available x session
+x_session_id = `./next_available_x`.strip
+puts "nextX: #{x_session_id}"
+
+# create a new x-session
+xsession = fork do
+  exec "xinit -- :#{x_session_id}"
+end
+Process.detach(xsession)
+
+# fire up bigtopo on new xsession
+job = fork do
+  #exec "DISPLAY=:#{x_session_id} sleep 10"
+  exec "sleep 10"
+end
+Process.detach(job)
+puts "waiting"
+Process.wait(job)
+puts "done waiting"
+
+puts "killing X"
+Process.kill("TERM", xsession)
+puts "done"
+
+# fire up siluki script on new xsession
+

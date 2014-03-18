@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# calculate first usable display
+XNUM="-1"
+SOCK="something"
+while [ ! -z "$SOCK" ]
+do
+XNUM=$(( $XNUM + 1 ))
+SOCK=$(ls -A -1 /tmp/.X11-unix | grep "X$XNUM" )
+done
+echo "$XNUM"
