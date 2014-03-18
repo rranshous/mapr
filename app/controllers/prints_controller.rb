@@ -1,5 +1,5 @@
 class PrintsController < ApplicationController
-  before_action :set_print, only: [:show, :edit, :update, :destroy]
+  before_action :set_print, only: [:show, :edit, :update, :destroy, :choose_scale]
 
 
   def choose_bbox
@@ -10,8 +10,12 @@ class PrintsController < ApplicationController
 
   def generate_sti
     left, top, right, bottom = params[:latlong].split(',')
-    logger.debug "latlong: #{left} #{top} #{right} #{bottom}"
-    redirect_to choose_scale_path
+    print = Print.create(left:left, top:top, right:right, bottom:bottom)
+    print.generate_stl
+    redirect_to choose_scale_path(print.id)
+  end
+
+  def wait_for_sti
   end
 
   # GET /prints
@@ -82,6 +86,6 @@ class PrintsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def print_params
-      params.require(:print).permit(:left, :left, :right, :top, :bottom)
+      params.require(:print).permit(:left, :right, :top, :bottom)
     end
 end
