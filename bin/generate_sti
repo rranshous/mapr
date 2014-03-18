@@ -2,6 +2,7 @@
 
 # grab our args, left/top/right/bottom
 left, top, right, bottom = ARGV[0..3]
+file_name = ARGV[4]
 puts "LATLONG: #{left} #{top} #{right} #{bottom}"
 
 # get id for next available x session
@@ -20,27 +21,24 @@ topo = fork do
 end
 Process.detach(topo)
 
-#puts "waiting"
-#Process.wait(job)
-#puts "done waiting"
-
-
 # start gui script to run topo
-file_name = 'test_out.slt'
 # left right top bottom
 puts "starting gui script"
 gui_script = fork do
-  exec "DISPLAY=:#{x_session_id} java -jar /home/robby/bin/sikuli-ide.jar -r /home/robby/coding/mapr/bin/run_topo.sikuli -- #{left} #{right} #{top} #{bottom} 2000 101 ../out/#{file_name}"
+  exec "DISPLAY=:#{x_session_id} java -jar /home/robby/bin/sikuli-ide.jar -r /home/robby/coding/mapr/bin/run_topo.skl -- #{left} #{right} #{top} #{bottom} 2000 101 ../out/#{file_name}"
 end
 Process.detach(gui_script)
 
-puts "sleeping"
-sleep(100)
+puts "checking for file"
+while !File.size?("/home/robby/coding/mapr/out/#{file_name}")
+  puts "sleeping"
+  sleep(5)
+end
 
 # wait for file to be created
 
 puts "killing X"
-#Process.kill("TERM", xsession)
+Process.kill("TERM", xsession)
 puts "done"
 
 # fire up siluki script on new xsession
