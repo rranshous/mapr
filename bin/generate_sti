@@ -5,7 +5,7 @@ left, top, right, bottom = ARGV[0..3]
 puts "LATLONG: #{left} #{top} #{right} #{bottom}"
 
 # get id for next available x session
-x_session_id = `./next_available_x`.strip
+x_session_id = `/home/robby/coding/mapr/bin/next_available_x`.strip
 puts "nextX: #{x_session_id}"
 
 # create a new x-session
@@ -15,17 +15,32 @@ end
 Process.detach(xsession)
 
 # fire up bigtopo on new xsession
-job = fork do
-  #exec "DISPLAY=:#{x_session_id} sleep 10"
-  exec "sleep 10"
+topo = fork do
+  exec "DISPLAY=:#{x_session_id} wine /home/robby/coding/topo/BigTopo.exe"
 end
-Process.detach(job)
-puts "waiting"
-Process.wait(job)
-puts "done waiting"
+Process.detach(topo)
+
+#puts "waiting"
+#Process.wait(job)
+#puts "done waiting"
+
+
+# start gui script to run topo
+file_name = 'test_out.slt'
+# left right top bottom
+puts "starting gui script"
+gui_script = fork do
+  exec "DISPLAY=:#{x_session_id} java -jar /home/robby/bin/sikuli-ide.jar -r /home/robby/coding/mapr/bin/run_topo.sikuli -- #{left} #{right} #{top} #{bottom} 2000 101 ../out/#{file_name}"
+end
+Process.detach(gui_script)
+
+puts "sleeping"
+sleep(100)
+
+# wait for file to be created
 
 puts "killing X"
-Process.kill("TERM", xsession)
+#Process.kill("TERM", xsession)
 puts "done"
 
 # fire up siluki script on new xsession
