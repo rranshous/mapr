@@ -11,10 +11,10 @@ class Print < ActiveRecord::Base
   end
 
   def generate_args
-    "#{self.left} #{self.top} #{self.right} #{self.bottom} #{self.out_path}"
+    "#{self.left} #{self.top} #{self.right} #{self.bottom} #{self.file_path}"
   end
 
-  def out_path
+  def file_path
     "out/#{self.id}.stl"
   end
 end

@@ -1,11 +1,16 @@
 class PrintsController < ApplicationController
-  before_action :set_print, only: [:show, :edit, :update, :destroy, :choose_scale]
-
+  before_action :set_print, only: [:show, :edit, :update, :destroy,
+                                   :choose_scale, :stl_data]
 
   def choose_bbox
   end
 
   def choose_scale
+  end
+
+  def stl_data
+    puts "reading out [#{@print.file_path}]: #{File.size(@print.file_path)}"
+    send_data File.read(@print.file_path)
   end
 
   def generate_sti
