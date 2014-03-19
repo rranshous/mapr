@@ -7,10 +7,10 @@
           overflow: hidden;
       }
   </style>
+  <%= javascript_include_tag 'jsstl/dat.gui.min.js' %>
   <%= javascript_include_tag 'jsstl/three.js' %>
   <%= javascript_include_tag 'jsstl/stats.js' %>
   <%= javascript_include_tag 'jsstl/func.js' %>
-  <%= javascript_include_tag 'jsstl/dat.gui.min.js' %>
   <script>
     var $stl_path = '<%= stl_data_path(@print.id) %>';
     $( document ).ready(function() { init(); });

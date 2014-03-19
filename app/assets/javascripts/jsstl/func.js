@@ -17,7 +17,8 @@ function trim (str) {
 // - 80 byte unused header
 // - All binary STLs are assumed to be little endian, as per wiki doc
 var parseStlBinary = function(stl) {
-    var geo = new THREE.Geometry();
+    //var geo = new THREE.Geometry();
+    var geo = new THREE.PlaneGeometry();
     var dv = new DataView(stl, 80); // 80 == unused header
     var isLittleEndian = true;
     var triangles = dv.getUint32(0, isLittleEndian); 
@@ -64,16 +65,15 @@ var parseStlBinary = function(stl) {
 
     mesh = new THREE.Mesh( 
         geo,
-        new THREE.MeshNormalMaterial({
-            overdraw:true,
-            shading: THREE.FlatShading
-        }
-        //new THREE.MeshLambertMaterial({
+        //new THREE.MeshNormalMaterial({
         //    overdraw:true,
-        //    color: 0xaa0000,
         //    shading: THREE.FlatShading
-            //shading: THREE.SmoothShading
         //}
+        new THREE.MeshLambertMaterial({
+          overdraw:true,
+          color: 0xaa0000,
+          shading: THREE.FlatShading
+        }
     ));
     mesh.scale.z = 1;
     scene.add(mesh);
@@ -160,7 +160,7 @@ var parseStl = function(stl) {
                     //mesh = new THREE.Mesh( geo, new THREE.MeshNormalMaterial({overdraw:true}));
                     mesh = new THREE.Mesh( 
                         geo, 
-                        new THREE.MeshLambertMaterial({
+                        new THREE.MeshBasicMaterial({
                             overdraw:true,
                             color: 0xaa0000,
                             shading: THREE.FlatShading
@@ -263,6 +263,16 @@ function init() {
     document.body.appendChild(stats.domElement);
     console.log('animating');
     animate();
+    var gui = new dat.GUI({
+      //height : 5 * 32 - 1
+    });
+    var gui_params = {
+      scale_up: function() { mesh.scale.z += .1; },
+      scale_down: function() { mesh.scale.z -= .1; }
+    };
+    gui.add(gui_params, 'scale_up');
+    gui.add(gui_params, 'scale_down');
+    gui.open();
 }
 
 function animate() {
@@ -279,13 +289,3 @@ function render() {
     renderer.render( scene, camera );
 }
 
-var gui = new dat.GUI({
-  //height : 5 * 32 - 1
-});
-var gui_params = {
-  scale_up: function() { mesh.scale.z += .1; },
-  scale_down: function() { mesh.scale.z -= .1; }
-};
-gui.add(gui_params, 'scale_up');
-gui.add(gui_params, 'scale_down');
-gui.open();

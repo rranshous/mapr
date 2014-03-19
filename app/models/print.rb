@@ -6,7 +6,7 @@ class Print < ActiveRecord::Base
     end
     Process.detach(generate)
     puts "waiting on generate"
-    Process.wait(generate)
+    Process.wait(generate) rescue 0
     puts "done generating"
   end
 
