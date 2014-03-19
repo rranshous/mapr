@@ -25,18 +25,18 @@ Process.detach(topo)
 # left right top bottom
 puts "starting gui script"
 gui_script = fork do
-  exec "DISPLAY=:#{x_session_id} /home/robby/apps/sikuli/runScript -r /home/robby/coding/mapr/bin/run_topo.sikuli --args #{left} #{right} #{top} #{bottom} 2000 1000 #{file_name}"
+  exec "DISPLAY=:#{x_session_id} /home/robby/apps/sikuli/runScript -r /home/robby/coding/mapr/bin/run_topo.sikuli --args #{left} #{right} #{top} #{bottom} 2000 100 #{file_name}"
 end
 Process.detach(gui_script)
 
 puts "checking for file"
 while !File.size?("#{file_name}")
   puts "sleeping"
-  sleep(5)
+  sleep(1)
 end
 
 # wait for file to be created
-
+sleep(2)
 puts "killing X"
 Process.kill("TERM", xsession)
 puts "done"

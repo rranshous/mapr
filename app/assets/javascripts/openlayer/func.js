@@ -3,7 +3,8 @@ function init() {
   map = new OpenLayers.Map('map');
   var base = new OpenLayers.Layer.OSM()
   map.addLayers([base]);
-  map.setCenter( new OpenLayers.LonLat(-567468.5392481, 4950672.5471436), 5);
+  //map.setCenter( new OpenLayers.LonLat(-122.19058, 46.19976), 5);
+  map.setCenter( new OpenLayers.LonLat(-13602148.699803, 5812470.6443611), 5);
   $('#submit').click(function() {
     $('#latlong').val(get_bbox());
     $('#latlong_form').submit();
