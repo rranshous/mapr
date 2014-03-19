@@ -12,7 +12,15 @@
   <%= javascript_include_tag 'jsstl/stats.js' %>
   <%= javascript_include_tag 'jsstl/func.js' %>
   <script>
-    var $stl_path = '<%= stl_data_path(@print.id) %>';
+    var stl_path = '<%= stl_data_path(@print.id) %>';
+    var save_scale_path = '<%= save_scale_path(@print.id) %>';
+    console.log("save scale path: " + save_scale_path);
     $( document ).ready(function() { init(); });
   </script>
 <% end %>
+
+<div style="display: hidden;">
+<%= form_tag save_scale_path(@print.id), id:'scale_form' do %>
+  <%= hidden_field_tag "scale", '', id:'scale_input' %>
+<% end %>
+</div>

@@ -238,8 +238,8 @@ function init() {
 
     //xhr.open( "GET", 'Octocat-v1.stl', true );
     //xhr.open( "GET", 'helens_250.stl', true );
-    console.log("stl path: " + $stl_path);
-    xhr.open( "GET", $stl_path, true );
+    console.log("stl path: " + stl_path);
+    xhr.open( "GET", stl_path, true );
     xhr.responseType = "arraybuffer";
     //xhr.setRequestHeader("Accept","text/plain");
     //xhr.setRequestHeader("Content-Type","text/plain");
@@ -264,10 +264,15 @@ function init() {
     });
     var gui_params = {
       scale_up: function() { mesh.scale.z += .1; },
-      scale_down: function() { mesh.scale.z -= .1; }
+      scale_down: function() { mesh.scale.z -= .1; },
+      done: function() {
+        $('#scale_input').val(mesh.scale.z);
+        $('#scale_form').submit();
+      }
     };
     gui.add(gui_params, 'scale_up');
     gui.add(gui_params, 'scale_down');
+    gui.add(gui_params, 'done');
     gui.open();
 }
 

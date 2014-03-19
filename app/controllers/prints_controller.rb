@@ -1,11 +1,16 @@
 class PrintsController < ApplicationController
   before_action :set_print, only: [:show, :edit, :update, :destroy,
-                                   :choose_scale, :stl_data]
+                                   :choose_scale, :stl_data, :save_scale]
 
   def choose_bbox
   end
 
   def choose_scale
+  end
+
+  def save_scale
+    @print.z_scale = params[:scale]
+    @print.save
   end
 
   def stl_data
@@ -91,6 +96,6 @@ class PrintsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def print_params
-      params.require(:print).permit(:left, :right, :top, :bottom)
+      params.require(:print).permit(:left, :right, :top, :bottom, :zscale)
     end
 end
