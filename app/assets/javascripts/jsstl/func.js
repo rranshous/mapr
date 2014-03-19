@@ -17,7 +17,7 @@ function trim (str) {
 // - 80 byte unused header
 // - All binary STLs are assumed to be little endian, as per wiki doc
 var parseStlBinary = function(stl) {
-    //var geo = new THREE.Geometry();
+    var geo = new THREE.Geometry();
     var geo = new THREE.PlaneGeometry();
     var dv = new DataView(stl, 80); // 80 == unused header
     var isLittleEndian = true;
@@ -63,18 +63,14 @@ var parseStlBinary = function(stl) {
     // expensive operation, but only needs to be done once.
     geo.computeFaceNormals();
 
-    mesh = new THREE.Mesh( 
+    mesh = new THREE.Mesh(
         geo,
-        //new THREE.MeshNormalMaterial({
-        //    overdraw:true,
-        //    shading: THREE.FlatShading
-        //}
-        new THREE.MeshLambertMaterial({
-          overdraw:true,
-          color: 0xaa0000,
-          shading: THREE.FlatShading
+        new THREE.MeshNormalMaterial({
+            //overdraw:true,
+            shading: THREE.FlatShading
         }
     ));
+
     mesh.scale.z = 1;
     scene.add(mesh);
 
@@ -160,7 +156,7 @@ var parseStl = function(stl) {
                     //mesh = new THREE.Mesh( geo, new THREE.MeshNormalMaterial({overdraw:true}));
                     mesh = new THREE.Mesh( 
                         geo, 
-                        new THREE.MeshBasicMaterial({
+                        new THREE.MeshLambertMaterial({
                             overdraw:true,
                             color: 0xaa0000,
                             shading: THREE.FlatShading
