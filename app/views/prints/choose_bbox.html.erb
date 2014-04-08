@@ -1,11 +1,16 @@
 <% content_for(:head) do %>
   <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' %>
+  <%= javascript_include_tag 'jquery-ui.js' %>
   <%= javascript_include_tag 'openlayer/OpenLayers.debug.js' %>
+  <%= javascript_include_tag 'http://maps.google.com/maps/api/js?v=3&sensor=false' %>
   <%= javascript_include_tag 'openlayer/func.js' %>
   <script>$( document ).ready(function() { init(); });</script>
   <style>
     #map { width: 500px; height: 500px; }
   </style>
+  <script>
+    $("#map").resizable("enable");
+  </script>
 <% end %>
 
 
