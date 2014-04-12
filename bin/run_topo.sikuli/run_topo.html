@@ -70,7 +70,7 @@
 <h2>run_topo.sikuli</h2> <a href="run_topo.zip">(Download this script)</a>
 </div>
 <pre class="sikuli-code">
-<span class="kw">import</span> sys
+<span class="kw">import</span> sys, re
 long0, long1 = sys.argv[<span class="dig">1</span>], sys.argv[<span class="dig">2</span>]
 lat0, lat1 = sys.argv[<span class="dig">3</span>], sys.argv[<span class="dig">4</span>]
 elevation = sys.argv[<span class="dig">5</span>]
@@ -94,11 +94,37 @@ file_name = sys.argv[<span class="dig">7</span>]
 <span class="skw">doubleClick</span>(<img src="1394596551235.png" />)
 <span class="skw">type</span>(lat1)
 <span class="skw">doubleClick</span>(<img src="1394596609753.png" />)
-<span class="skw">type</span>(elevation)
+<span class="skw">type</span>(<span class="str">'100000'</span>)
 <span class="skw">doubleClick</span>(<img src="1394596671717.png" />)
-<span class="skw">type</span>(pixel_size)
+<span class="skw">type</span>(<span class="str">'1000'</span>)
 <span class="skw">doubleClick</span>(<img src="1394596719469.png" />)
+<span class="skw">type</span>(<span class="str">"%s.tmp"</span> % file_name)
+<span class="skw">click</span>(<img src="1395114352748.png" />)
+<span class="skw">sleep</span>(<span class="dig">2</span>)
+<span class="skw">rightClick</span>(<img src="1397335760512.png" />)
+<span class="skw">click</span>(<img src="1397336029541.png" />)
+<span class="skw">rightClick</span>(<img src="1397335760512.png" />)
+<span class="skw">click</span>(<img src="1397336166527.png" />)<span class="cmt"># pull out the correct max / min elevations</span>
+
+output = Env.getClipboard()
+<span class="kw">print</span> <span class="str">"clipboard: %s"</span> % output
+regex = re.compile(<span class="str">"Limits of this file : (?P&lt;max&gt;-?\d+)\s+(?P&lt;min&gt;-?\d+) m"</span>)
+r = regex.search(output)
+min, max = r.groups()
+<span class="kw">print</span> <span class="str">"setting min/max: %s/%s"</span> % (min,max)
+
+<span class="skw">doubleClick</span>(<img src="1397339573851.png" />)
+<span class="skw">type</span>(min)
+<span class="skw">doubleClick</span>(<img src="1397338260491.png" />)
+<span class="skw">type</span>(max)
+
+<span class="skw">doubleClick</span>(<img src="1397339385607.png" />)
 <span class="skw">type</span>(file_name)
+
+<span class="skw">doubleClick</span>(<img src="1397339633211.png" />)
+<span class="skw">type</span>(pixel_size)
+
+
 <span class="skw">click</span>(<img src="1395114352748.png" />)
 </pre>
 </body>

@@ -25,7 +25,7 @@ Process.detach(topo)
 # left right top bottom
 puts "starting gui script"
 gui_script = fork do
-  exec "DISPLAY=:#{x_session_id} /home/robby/apps/sikuli/runScript -r /home/robby/coding/mapr/bin/run_topo.sikuli --args #{left} #{right} #{top} #{bottom} 2000 100 #{file_name}"
+  exec "DISPLAY=:#{x_session_id} /home/robby/apps/sikuli/runScript -r /home/robby/coding/mapr/bin/run_topo.sikuli --args #{left} #{right} #{top} #{bottom} 2600 100 #{file_name}"
 end
 Process.detach(gui_script)
 
