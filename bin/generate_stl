@@ -35,11 +35,11 @@ while !File.size?("#{file_name}")
   sleep(1)
 end
 
-# wait for file to be created
+# wait for file to be created (just in case..)
 sleep(2)
+
+puts "Killing topo"
+Process.kill("TERM", gui_script)
 puts "killing X"
 Process.kill("TERM", xsession)
 puts "done"
-
-# fire up siluki script on new xsession
-
