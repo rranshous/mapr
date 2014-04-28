@@ -6,7 +6,7 @@ file_name = ARGV[4]
 puts "LATLONG: #{left} #{top} #{right} #{bottom}"
 
 # get id for next available x session
-x_session_id = `/home/robby/coding/mapr/bin/next_available_x`.strip
+x_session_id = `./bin/next_available_x`.strip
 puts "nextX: #{x_session_id}"
 
 # create a new x-session
@@ -17,7 +17,7 @@ Process.detach(xsession)
 
 # fire up bigtopo on new xsession
 topo = fork do
-  exec "DISPLAY=:#{x_session_id} wine /home/robby/coding/topo/BigTopo.exe"
+  exec "DISPLAY=:#{x_session_id} wine ./bin/topo/BigTopo.exe"
 end
 Process.detach(topo)
 
@@ -25,7 +25,7 @@ Process.detach(topo)
 # left right top bottom
 puts "starting gui script"
 gui_script = fork do
-  exec "DISPLAY=:#{x_session_id} /home/robby/apps/sikuli/runScript -r /home/robby/coding/mapr/bin/run_topo.sikuli --args #{left} #{right} #{top} #{bottom} 2600 100 #{file_name}"
+  exec "DISPLAY=:#{x_session_id} ./bin/sikuli/runScript -r ./bin/run_topo.sikuli --args #{left} #{right} #{top} #{bottom} 2600 100 out/#{file_name}"
 end
 Process.detach(gui_script)
 

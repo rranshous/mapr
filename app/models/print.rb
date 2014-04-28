@@ -15,6 +15,6 @@ class Print < ActiveRecord::Base
   end
 
   def file_path
-    "out/#{self.id}.stl"
+    "#{self.id}.stl"
   end
 end

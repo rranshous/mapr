@@ -1,0 +1,78 @@
+[debug (3/18/14 4:51:10 PM)] RunSetup: SikuliX Setup Build: 1.0.1 12NOV2013120000
+[debug (3/18/14 4:51:10 PM)] RunSetup: ... starting with no args given
+[debug (3/18/14 4:51:13 PM)] RunSetup: Option UPDATE selected
+[debug (3/18/14 4:51:13 PM)] RunSetup: checking for newer versions
+[debug (3/18/14 4:51:14 PM)] No version info available at https://dl.dropbox.com/u/42895525/SikuliX
+[debug (3/18/14 4:51:19 PM)] RunSetup: You already have the latest version!
+[debug (3/18/14 4:51:19 PM)] RunSetup: Completed: checking for newer versions
+[debug (3/18/14 4:51:19 PM)] RunSetup: user home: /home/robby
+[debug (3/18/14 4:51:19 PM)] RunSetup: RunningSystem: Linux 3.11.0-12-generic
+[debug (3/18/14 4:51:19 PM)] RunSetup: parent of jar/classes: /home/robby/apps/sikuli/
+[debug (3/18/14 4:51:19 PM)] RunSetup: RunningJava: Java 7 (amd64) 1.7.0_51-b00
+[debug (3/18/14 4:51:19 PM)] RunSetup: ... could not detect whether Sikuli is used the first time on this system
+[debug (3/18/14 4:52:03 PM)] FileManager: Downloading 1.0.1-2.jar having 10509 KB
+[debug (3/18/14 4:53:40 PM)] FileManager: downloaded 10509 KB to /home/robby/apps/sikuli/1.0.1-2.jar
+[debug (3/18/14 4:53:40 PM)] FileManager: download time: 95
+[debug (3/18/14 4:53:43 PM)] RunSetup: Download ended
+[debug (3/18/14 4:53:43 PM)] RunSetup: adding native stuff to sikuli-script.jar
+[debug (3/18/14 4:53:43 PM)] FileManager: buildJar: /home/robby/apps/sikuli/sikuli-temp.jar
+[debug (3/18/14 4:53:43 PM)] FileManager: buildJar: adding: /home/robby/apps/sikuli/sikuli-script.jar
+[debug (3/18/14 4:53:45 PM)] FileManager: buildJar: adding: /home/robby/apps/sikuli/sikuli-setup.jar
+[debug (3/18/14 4:53:49 PM)] FileManager: buildJar: completed
+[debug (3/18/14 4:53:49 PM)] ResourceLoaderBasic: export: Trying to access package
+[debug (3/18/14 4:53:49 PM)] ResourceLoaderBasic: export: Accessing jar: file:/home/robby/apps/sikuli/sikuli-setup.jar
+[debug (3/18/14 4:53:50 PM)] ResourceLoaderBasic: export: Found 1 Files in Commands/linux/runScript
+[debug (3/18/14 4:53:50 PM)] ResourceLoaderBasic: runcmd: chmod ugo+x /home/robby/apps/sikuli/runScript 
+[info (3/18/14 4:53:50 PM)] runcmd: chmod ugo+x /home/robby/apps/sikuli/runScript 
+[debug (3/18/14 4:53:50 PM)] RunSetup: trying to set up the environment
+[debug (3/18/14 4:53:50 PM)] ResourceLoaderBasic: check: we are running on arch: amd64
+[debug (3/18/14 4:53:50 PM)] ResourceLoaderBasic: check: using Java at: /usr/lib/jvm/java-7-openjdk-amd64/jre/
+[error (3/18/14 4:53:50 PM)] ResourceLoaderBasic: check: No valid libs path available until now!
+[action (3/18/14 4:53:50 PM)] ResourceLoaderBasic: check: Please wait! Trying to extract libs to jar parent folder: /home/robby/apps/sikuli/
+[debug (3/18/14 4:53:50 PM)] ResourceLoaderBasic: extractLibs: Accessing jar: file:/home/robby/apps/sikuli/sikuli-setup.jar
+[debug (3/18/14 4:53:50 PM)] ResourceLoaderBasic: extractLibs: Found 3 Files in META-INF/libs/linux/libs64/
+[debug (3/18/14 4:53:50 PM)] ResourceLoaderBasic: export: Trying to access package
+[debug (3/18/14 4:53:50 PM)] ResourceLoaderBasic: export: Accessing jar: file:/home/robby/apps/sikuli/sikuli-setup.jar
+[debug (3/18/14 4:53:51 PM)] ResourceLoaderBasic: export: Found 0 Files in META-INF/libs/tessdata
+[debug (3/18/14 4:53:51 PM)] ResourceLoaderBasic: checkLibsDir: /home/robby/apps/sikuli/libs
+[debug (3/18/14 4:53:51 PM)] ResourceLoaderBasic: loadLib: JXGrabKey
+[debug (3/18/14 4:53:51 PM)] ResourceLoaderBasic: loadLib: Found: JXGrabKey
+[debug (3/18/14 4:53:51 PM)] ResourceLoaderBasic: loadLib: Now loaded: JXGrabKey
+[debug (3/18/14 4:53:51 PM)] ResourceLoaderBasic: checkLibsDir: Using libs at: /home/robby/apps/sikuli/libs
+[debug (3/18/14 4:53:56 PM)] RunSetup: Trying to run functional test: running Jython statements via SikuliScript
+[debug (3/18/14 4:53:56 PM)] SikuliX: before adding to classpath: /home/robby/apps/sikuli/sikuli-script.jar
+[debug (3/18/14 4:53:56 PM)] SikuliX: 0: file:/home/robby/apps/sikuli/sikuli-setup.jar
+[debug (3/18/14 4:53:56 PM)] SikuliX: after adding to classpath
+[debug (3/18/14 4:53:56 PM)] SikuliX: 0: file:/home/robby/apps/sikuli/sikuli-setup.jar
+[debug (3/18/14 4:53:56 PM)] SikuliX: 1: file:/home/robby/apps/sikuli/sikuli-script.jar
+[debug (3/18/14 4:53:56 PM)] RunSetup: trying to run testSetup.sikuli using SikuliScript
+[debug (3/18/14 4:53:59 PM)] SikuliX Jython Support Build: 1.0.1 12SEP2013160248
+[debug (3/18/14 4:54:00 PM)] JythonScriptRunner: : executeScriptHeader: adding SikuliX Lib path to sys.path
+/home/robby/apps/sikuli/sikuli-setup.jar/Lib
+[debug (3/18/14 4:54:00 PM)] Jython: sikuli: __init__: entering
+[debug (3/18/14 4:54:00 PM)] Jython: sikuli: Sikuli: entering
+[debug (3/18/14 4:54:01 PM)] Jython: sikuli: Sikuli: constants
+[debug (3/18/14 4:54:01 PM)] Jython: sikuli: Sikuli: import Region
+[debug (3/18/14 4:54:02 PM)] Jython: sikuli: Sikuli: import Screen
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: Env.addHotkey
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: import Match
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: import Pattern
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: import Location
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: import ScreenUnion
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: import Finder
+[debug (3/18/14 4:54:03 PM)] ResourceLoaderBasic: loadLib: VisionProxy
+[debug (3/18/14 4:54:03 PM)] ResourceLoaderBasic: loadLib: Found: VisionProxy
+[debug (3/18/14 4:54:03 PM)] ResourceLoaderBasic: loadLib: Now loaded: VisionProxy
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: import App
+[debug (3/18/14 4:54:03 PM)] Screen: initScreens: basic initialization (1 Screen(s) found)
+[debug (3/18/14 4:54:03 PM)] *** monitor configuration (primary: 0) ***
+[debug (3/18/14 4:54:03 PM)] Screen 0: S(0)[0,0 1600x900]
+[debug (3/18/14 4:54:03 PM)] *** end monitor configuration ***
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: import Key
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: import from Basics
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: import from compare
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: init SikuliImporter
+[debug (3/18/14 4:54:03 PM)] Jython: sikuli: Sikuli: import SikuliScript
+[debug (3/18/14 4:54:03 PM)] Jython: init SCREEN as ()
+[debug (3/18/14 4:54:03 PM)] Sikuli-Script startup: 4115
+[debug (3/18/14 4:55:01 PM)] RunSetup: ... SikuliX Setup seems to have ended successfully ;-)
