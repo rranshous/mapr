@@ -3,43 +3,19 @@
 # grab our args, left/top/right/bottom
 left, top, right, bottom = ARGV[0..3]
 file_name = ARGV[4]
+screen_mode = ARGV[5]
 puts "LATLONG: #{left} #{top} #{right} #{bottom}"
 
-# get id for next available x session
-x_session_id = `./bin/next_available_x`.strip
-puts "nextX: #{x_session_id}"
-
-# create a new x-session
-xsession = fork do
-  exec "xinit -- :#{x_session_id}"
+# fire up work script
+work_script = fork do
+  if screen_mode == 'live'
+    exec "./bin/generate_stl_cmds #{left} #{top} #{right} #{bottom} #{file_name}"
+  else
+    exec "xvfb-run -e ./log/xvfb -n 20 -a ./bin/generate_stl_cmds #{left} #{top} #{right} #{bottom} #{file_name}"
+  end
 end
-Process.detach(xsession)
+Process.waitpid(work_script)
 
-# fire up bigtopo on new xsession
-topo = fork do
-  exec "DISPLAY=:#{x_session_id} wine ./bin/topo/BigTopo.exe"
-end
-Process.detach(topo)
-
-# start gui script to run topo
-# left right top bottom
-puts "starting gui script"
-gui_script = fork do
-  exec "DISPLAY=:#{x_session_id} ./bin/sikuli/runScript -r ./bin/run_topo.sikuli --args #{left} #{right} #{top} #{bottom} 2600 100 out/#{file_name}"
-end
-Process.detach(gui_script)
-
-puts "checking for file"
-while !File.size?("#{file_name}")
-  puts "sleeping"
-  sleep(1)
-end
-
-# wait for file to be created (just in case..)
-sleep(2)
-
-puts "Killing topo"
-Process.kill("TERM", gui_script)
-puts "killing X"
-Process.kill("TERM", xsession)
+puts "killing worker"
+Process.kill("TERM", work_script)
 puts "done"

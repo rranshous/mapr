@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+# grab our args, left/top/right/bottom
+left, top, right, bottom = ARGV[0..3]
+file_name = ARGV[4]
+puts "LATLONG: #{left} #{top} #{right} #{bottom}"
+
+# start the window manager
+puts "starting wm"
+wm = fork do
+  exec "fluxbox"
+end
+Process.detach(wm)
+
+# fire up bigtopo
+puts "starting big topo"
+topo = fork do
+  exec "wine ./bin/topo/BigTopo.exe"
+end
+Process.detach(topo)
+
+# start gui script to run topo
+# left right top bottom
+puts "starting gui script"
+gui_script = fork do
+  exec "./bin/sikuli/runScript -r ./bin/run_topo.sikuli --args #{left} #{right} #{top} #{bottom} 2600 100 out/#{file_name}"
+end
+Process.detach(gui_script)
+
+puts "checking for file"
+while !File.size?("#{file_name}")
+  puts "sleeping"
+  sleep(1)
+end
+
+# wait for file to finish writing (just in case..)
+sleep(1)
+
+puts "Killing gui script"
+Process.kill("TERM", gui_script)
+puts "Killing topo"
+Process.kill("TERM", topo)
+puts "Killing wm"
+Process.kill("TERM", wm)
+
+puts "Done w/ commands"
+
