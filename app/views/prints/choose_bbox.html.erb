@@ -4,12 +4,12 @@
   <%= javascript_include_tag 'openlayer/OpenLayers.debug.js' %>
   <%= javascript_include_tag 'http://maps.google.com/maps/api/js?v=3&sensor=false' %>
   <%= javascript_include_tag 'openlayer/func.js' %>
-  <script>$( document ).ready(function() { init(); });</script>
+  <script>$(document).ready(function() { init(); });</script>
   <style>
     #map { width: 500px; height: 500px; }
   </style>
   <script>
-    $("#map").resizable("enable");
+    // $("#map").resizable("enable");
   </script>
 <% end %>
 
@@ -18,7 +18,18 @@
 
 <hr/>
 
+<a data-w="3" data-h="5" href="#">3x5</a>
+
+
+<hr/>
+
 <%= form_tag generate_sti_path, id:'latlong_form' do %>
+  <%= label_tag 'width' %>
+  <%= text_field_tag 'width', '5', class:'width' %>
+  <%= label_tag 'height' %>
+  <%= text_field_tag 'height', '5', class:'height' %>
   <%= hidden_field_tag 'latlong' %>
   <%= submit_tag "submit", id:'submit' %>
 <% end %>
+
+<hr/>

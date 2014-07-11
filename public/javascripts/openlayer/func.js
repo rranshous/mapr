@@ -23,10 +23,9 @@ function init() {
   map.addLayers([physical]);
   //map.setCenter( new OpenLayers.LonLat(-122.19058, 46.19976), 5);
   map.setCenter( new OpenLayers.LonLat(-13602148.699803, 5812470.6443611), 5);
-  $('#submit').click(function() {
-    $('#latlong').val(get_bbox());
-    $('#latlong_form').submit();
-  });
+
+  init_submit();
+  init_wh(map);
 };
 
 function get_bbox(){
@@ -37,4 +36,38 @@ function get_bbox(){
   return bbox = bounds.toBBOX();
 };
 
+function init_wh(map){
+  var update = function(s) { return function() {
+    var input = $(this);
+    console.log(s, input, input.val());
+    var center = map.center;
+    console.log('center', center);
+    resize_map(map);
+  };};
+  $('input.width').keyup(update('width'));
+  $('input.height').keyup(update('height'));
+  $('a').click(function(ev) {
+    var self = $(this);
+    if(self.data('w')) {
+      $('input.width').val(self.data('w'));
+      $('input.height').val(self.data('h'));
+      resize_map(map);
+    };
+  });
+};
 
+function resize_map(map){
+  var width = $('input.width').val();
+  var height = $('input.height').val();
+  console.log('wh',width,height);
+  if(width != '') { $('#map').css('width', width + '00px'); }
+  if(height != '') { $('#map').css('height', height + '00px'); }
+  map.updateSize();
+};
+
+function init_submit() {
+  $('#submit').click(function() {
+    $('#latlong').val(get_bbox());
+    $('#latlong_form').submit();
+  });
+}
