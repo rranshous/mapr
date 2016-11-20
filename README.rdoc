@@ -1,28 +1,25 @@
-== README
+web app which generates files used to mill topographical regions
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+NOTICE: Project's web front end is no longer working, probably due to changes with google maps or open maps
 
-Things you may want to cover:
+tour through the files:
+ app/models/print.rb -- ends up running 'generate_stl' command from bin dir, giving it input gathered from user via web app
+ bin/generate_stl -- forks off 'generate_stl_cmds' passing through some args
+ bin/generate_stl_cmds -- forks off many procs including Topo and automation script
+ bin/run_topo.sikuli -- bin file run by sikuli tool. drives the UI only topo application setting inputs and ultimately generating output file
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You need a few things to make this all go including:
+ linux running X Server -- the tools run in this env
+ Wine -- to emulate enough windows to run topo
+ java -- sikuli is a java tool
+ fluxbox -- looks like the generate_stl_cmds script launches fluxbox (window manager), not sure what happens if you don't have it
+ ruby -- 1.9.3
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+to run web project, use commands:
+ bundle install
+ rake db:migrate
+ rails s
+
+than point your browser at: http://localhost:3000/choose_map
+
