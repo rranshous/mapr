@@ -37,7 +37,7 @@ function get_bbox(){
 };
 
 function init_wh(map){
-  var update = function(s) { return function() {
+  var update = function(s) { return function(ev) {
     var input = $(this);
     console.log(s, input, input.val());
     var center = map.center;
@@ -46,12 +46,12 @@ function init_wh(map){
   };};
   $('input.width').keyup(update('width'));
   $('input.height').keyup(update('height'));
-  $('a').click(function(ev) {
+  $('button').click(function(ev) {
     var self = $(this);
     if(self.data('w')) {
       $('input.width').val(self.data('w'));
       $('input.height').val(self.data('h'));
-      resize_map(map);
+      $('input.width').trigger('keyup');
     };
   });
 };
